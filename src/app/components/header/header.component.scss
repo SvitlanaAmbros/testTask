@@ -1,0 +1,13 @@
+$material-dark:  #2c3849;
+
+.header {
+	background:$material-dark;
+	height: 70px;
+	max-width: 100%;
+}
+
+.header__img {
+	height: 40px;
+	margin-top: 15px;
+	margin-left: 30px;
+}
