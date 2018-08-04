@@ -1,11 +1,11 @@
 <div class="card">
-	<form>
+	<form class="login">
 		<h3 class="card__title">Welcome!</h3>
 		<input type="text" placeholder="Email" class="card__info" 
 		[(ngModel)]="user.email" name="email">
 		<input type="password" placeholder="Password" class="card__info" [(ngModel)]="user.password" name="password">
-		<input type="submit" value="Login" class="card__button card__button-login" routerLink="" (click)="login()" >
-		<input type="submit" value="Register" class="card__button card__button-register" routerLink="register">
+		<input type="submit" value="Login" class="login__button login__button-login" routerLink="" (click)="login()" >
+		<input type="submit" value="Register" class="login__button login__button-register" routerLink="register">
 	</form>
 </div>
 

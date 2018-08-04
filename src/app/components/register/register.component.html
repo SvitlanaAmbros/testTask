@@ -1,6 +1,6 @@
 <div class="card">
-	<form >
-		<h3 class="card__title">Register</h3>
+	<form class="register">
+		<h3 class="register__title">Register</h3>
 		<input type="text" placeholder="First Name" [(ngModel)]="user.firstName" name="firstName">
 		<input type="text" placeholder="Last Name" [(ngModel)]="user.lastName" name="lastName">
 		<input type="text" placeholder="Email"
@@ -9,8 +9,8 @@
 		<input type="password" placeholder="Confirm Password" [(ngModel)]="user.confirmPassword" name="confirmPassword">
 		<input type="text" placeholder="Age" [(ngModel)]="user.age" name="age">
 		<input type="text" placeholder="Country" [(ngModel)]="user.country" name="country">
-		<input type="submit" value="Register" class="card__button card__button-register" (click)="register()">
-		<input type="submit" value="Login" class="card__button card__button-login" (click)="goBack()">
+		<input type="submit" value="Register" class="register__button register__button-register" (click)="register()">
+		<input type="submit" value="Login" class="register__button register__button-login" (click)="goBack()">
 	</form>
 </div>
 
