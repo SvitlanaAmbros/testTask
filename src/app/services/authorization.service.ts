@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
 })
 export class AuthorizationService {
 
-	constructor(private afAuth: AngularFireAuth) { }
+	constructor(private afAuth: AngularFireAuth, private router:Router) { }
 
 	login(user: User) {
 		this.afAuth.auth
 			.signInWithEmailAndPassword(user.email, user.password)
+			.then(this.change())
         	.catch(function(error) {
 			var errorCode = error.code;
 			var errorMessage = error.message;
@@ -27,8 +28,9 @@ export class AuthorizationService {
   	}
 
   	register(user: User) { 
-  		firebase.auth()
-  			.createUserWithEmailAndPassword(email, password)
+  		this.afAuth.auth
+  			.createUserWithEmailAndPassword(user.email, user.password)
+  			.then(this.change())
 	    	.catch(function(error) {
 	  		var errorCode = error.code;
 	  		var errorMessage = error.message;
@@ -40,5 +42,10 @@ export class AuthorizationService {
 	  		console.log(error);
 		});
   	}
+
+  	change() {
+  		this.router.navigateByUrl('details');
+  	}
+  }
 }
 

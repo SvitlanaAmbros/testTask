@@ -1,20 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { User } from '../../models/user';
+import { User } from '../../models/User';
+import { AuthorizationService } from '../../services/authorization.service'; 
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent implements OnInit {
   user:User = {
-  	email:'',
-  	password:''
+    firstName:'';
+    lastName:'';
+    email:'';
+    password:'';
+    confirmPassword:'';
+    age:'';
+    country:'';
   };
 
-  constructor(private location: Location) { }
+  constructor(public location: Location, public authorization: AuthorizationService) { }
 
   ngOnInit() {
   }
@@ -23,7 +30,37 @@ export class RegisterComponent implements OnInit {
 	this.location.back();
   }
 
+  // validate(regex, value, errorMsg, errorMsgArray) {
+  //   if (regex.test(value)) {
+  //     errorMsgArray.push(errorMsg);
+  //   }
+  // }
+
   register() { 
-  	register(user);
-  }
+    let nameRegex = /^.+$/;
+    let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let ageRegex= /^[0-9]+$/;
+    let passwordRegex = /^.{6,}$/;
+    let countryRegex = /^[a-zA-Z]+$/;
+    
+    // let errorMsgArray = [];
+    // this.validate(nameRegex, this.user.firstName, "FirstName is incorrect!", errorMsgArray);
+    // validate(nameRegex, this.user.lastName, "LastName is incorrect!", errorMsgArray);
+    // validate x 20
+    // alert(errorMsgArray[0]);
+    
+
+    if (nameRegex.test(this.user.firstName) &&
+      nameRegex.test(this.user.lastName) && 
+      emailRegex.test(this.user.email) &&
+      passwordRegex.test(this.user.password) &&
+      passwordRegex.test(this.user.confirmPassword) &&
+      ageRegex.test(this.user.age) && 
+      countryRegex.test(this.user.country) &&
+      (this.user.password == this.user.confirmPassword)){
+      this.authorization.register(this.user);
+    }else {
+      alert('Something is wrong!');
+    } 
+  } 
 }

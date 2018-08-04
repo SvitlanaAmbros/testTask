@@ -9,9 +9,9 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 
 export class LoginComponent implements OnInit {
-  user:User = {
-  	email:'',
-  	password:''
+  user:UserRegister = {
+    email:'';
+    password:'';	
   };
 
   constructor(public authorization: AuthorizationService) { 
