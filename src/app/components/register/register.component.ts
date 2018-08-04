@@ -12,13 +12,13 @@ import { AuthorizationService } from '../../services/authorization.service';
 
 export class RegisterComponent implements OnInit {
   user:User = {
-    firstName:'';
-    lastName:'';
-    email:'';
-    password:'';
-    confirmPassword:'';
-    age:'';
-    country:'';
+    firstName:'',
+    lastName:'',
+    email:'',
+    password:'',
+    confirmPassword:'',
+    age: 0,
+    country:''
   };
 
   constructor(public location: Location, public authorization: AuthorizationService) { }
@@ -55,12 +55,12 @@ export class RegisterComponent implements OnInit {
       emailRegex.test(this.user.email) &&
       passwordRegex.test(this.user.password) &&
       passwordRegex.test(this.user.confirmPassword) &&
-      ageRegex.test(this.user.age) && 
+      ageRegex.test(String(this.user.age)) && 
       countryRegex.test(this.user.country) &&
       (this.user.password == this.user.confirmPassword)){
-      this.authorization.register(this.user);
+      this.authorization.register(this.user)
     }else {
-      alert('Something is wrong!');
+      alert('Something is wrong!')
     } 
   } 
 }

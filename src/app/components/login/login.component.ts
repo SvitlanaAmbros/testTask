@@ -9,9 +9,14 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 
 export class LoginComponent implements OnInit {
-  user:UserRegister = {
-    email:'';
-    password:'';	
+  user:User = {
+    firstName:'',
+    lastName:'',
+    email:'',
+    password:'',
+    confirmPassword:'',
+    age: 0,
+    country:''
   };
 
   constructor(public authorization: AuthorizationService) { 
@@ -25,5 +30,10 @@ export class LoginComponent implements OnInit {
       this.authorization.login(this.user);
     }
   }
+
+  logout(){
+    this.authorization.logout();
+  }
+
     
 }

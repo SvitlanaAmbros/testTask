@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthorizationService {
 
 	constructor(private afAuth: AngularFireAuth, private router:Router) { }
@@ -14,7 +15,7 @@ export class AuthorizationService {
 	login(user: User) {
 		this.afAuth.auth
 			.signInWithEmailAndPassword(user.email, user.password)
-			.then(this.change())
+			.then((res) =>this.change())
         	.catch(function(error) {
 			var errorCode = error.code;
 			var errorMessage = error.message;
@@ -30,7 +31,7 @@ export class AuthorizationService {
   	register(user: User) { 
   		this.afAuth.auth
   			.createUserWithEmailAndPassword(user.email, user.password)
-  			.then(this.change())
+  			.then((res) => this.change())
 	    	.catch(function(error) {
 	  		var errorCode = error.code;
 	  		var errorMessage = error.message;
@@ -44,8 +45,15 @@ export class AuthorizationService {
   	}
 
   	change() {
+  		console.log(this.afAuth.auth.currentUser.uid);
   		this.router.navigateByUrl('details');
+
   	}
-  }
+
+  	logout(){
+  		this.afAuth.auth.signOut();
+  		this.router.navigateByUrl('');
+  	}
 }
+// }
 
