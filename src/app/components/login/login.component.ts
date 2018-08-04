@@ -1,24 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
+import { AuthorizationService } from '../../services/authorization.service'; 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
   user:User = {
-  	login:'',
+  	email:'',
   	password:''
   };
 
-  constructor() { }
+  constructor(public authorization: AuthorizationService) { 
+  }
 
   ngOnInit() {
-
   }
 
-  onSubmit() {
-  	console.log(this.user.login + this.user.password);
+  login(){
+    if(this.user.email != "" && this.user.password != "") {
+      this.authorization.login(this.user);
+    }
   }
+    
 }

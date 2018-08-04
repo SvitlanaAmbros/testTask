@@ -1,12 +1,16 @@
-<div class="container">
-	<div class="card">
-		<form (ngSubmit)="onSubmit()">
-			<h3 class="card__title">Welcome!</h3>
-			<input type="text" placeholder="Email" class="card__info"
-			[(ngModel)]="user.login" name="login">
-			<input type="password" placeholder="Password" class="card__info" [(ngModel)]="user.password" name="password">
-			<input type="submit" value="Register" class="card__button card__button-register" routerLink="register">
-			<input type="submit" value="Login" class="card__button card__button-login" routerLink="">
-		</form>
-	</div>
+<div class="card">
+	<form (ngSubmit)="onSubmit()">
+		<h3 class="card__title">Register</h3>
+		<input type="text" placeholder="First Name">
+		<input type="text" placeholder="Last Name">
+		<input type="text" placeholder="Email"
+		[(ngModel)]="user.login" name="login">
+		<input type="password" placeholder="Password" [(ngModel)]="user.password" name="password">
+		<input type="password" placeholder="Confirm Password" [(ngModel)]="user.password" name="password">
+		<input type="text" placeholder="Age">
+		<input type="text" placeholder="Country">
+		<input type="submit" value="Register" class="card__button card__button-register" (click)="register()">
+		<input type="submit" value="Login" class="card__button card__button-login" (click)="goBack()">
+	</form>
 </div>
+

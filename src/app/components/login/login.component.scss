@@ -2,17 +2,16 @@ $material-accent: #ffca28;
 $material-accent-dark: #ff9800;
 $white-color: #fff;
 
+input[type="text"], input[type="password"]{
+    font-size:20px;
+    margin:20px 0;
+}
 .card {
 	padding: 60px 80px 50px;
 	width: 50%;
 	text-align: center;
 	margin: auto;
 	margin-top: 50px;
-}
-
-input[type="text"], input[type="password"]{
-    font-size:20px;
-    margin:20px 0;
 }
 
 .card__button {
