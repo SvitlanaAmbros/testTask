@@ -52,7 +52,6 @@ export class AuthorizationService {
 
   	logout(){
   		this.afAuth.auth.signOut();
-  		this.router.navigateByUrl('');
   	}
 }
 // }

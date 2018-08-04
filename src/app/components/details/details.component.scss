@@ -1,0 +1,48 @@
+$material-accent: #ffca28;
+$material-accent-dark: #ff9800;
+$white-color: #fff;
+$material-dark:  #2c3849;
+
+.user-info {
+	margin: 50px;
+	border: 5px solid $material-accent;
+	border-radius: 7px;
+	text-align: center;
+}
+
+.user-info__img {
+	height: 200px;
+	width: 200px;
+	margin: 30px 0px;
+}
+
+.block__item {
+	margin:10px;
+	font-size: 26px;
+}
+
+.block__item_answer {
+	color: $material-dark;
+}
+
+.user-info__button {
+	width: 60%;
+	height: 50px;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 15px 0;
+	text-transform: uppercase;
+	border-radius: 4px;
+}
+
+.user-info__button-edit {
+	border: 0;
+	background: $material-accent;
+	color: $white-color;
+}
+
+.user-info__button-logout {
+	color: $material-accent;
+	background: $white-color;
+	border:2px solid $material-accent;
+}

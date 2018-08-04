@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DetailsComponent } from './components/details/details.component';
+import { EditComponent } from './components/edit/edit.component';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyC8heDY8gLWVimIueXjKEk3mZ61REpwRAM",
@@ -29,7 +30,8 @@ export const firebaseConfig = {
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    DetailsComponent
+    DetailsComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

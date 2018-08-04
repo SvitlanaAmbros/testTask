@@ -21,13 +21,14 @@ export class RegisterComponent implements OnInit {
     country:''
   };
 
-  constructor(public location: Location, public authorization: AuthorizationService) { }
+  constructor(private router:Router, private authorization: AuthorizationService) { }
 
   ngOnInit() {
   }
 
   goBack() {
-	this.location.back();
+    this.router.navigateByUrl('');
+	// this.location.back();
   }
 
   // validate(regex, value, errorMsg, errorMsgArray) {
