@@ -6,19 +6,19 @@
 			<div class="user-info__detail">
 				<div class="detail__block ">
 					<label class = "block__item">First Name:</label>
-					<label class = "block__item block__item_answer">Name</label>
+					<label class = "block__item block__item_answer">{{currentUser?.firstname}}</label>
 				</div>
 				<div class="detail__block">
 					<label class = "block__item">Last Name:</label>
-					<label class = "block__item block__item_answer">Name</label>
+					<label class = "block__item block__item_answer">{{currentUser?.lastname}}</label>
 				</div>
 				<div class="detail__block">
 					<label class = "block__item">Age:</label>
-					<label class = "block__item block__item_answer">20</label>
+					<label class = "block__item block__item_answer">{{currentUser?.age}}</label>
 				</div>
 				<div class="detail__block">
 					<label class = "block__item">Country:</label>
-					<label class = "block__item block__item_answer">Ukraine</label>
+					<label class = "block__item block__item_answer">{{currentUser?.country}}</label>
 				</div>
 			</div>
 			<input type="submit" value="edit" class="user-info__button user-info__button-edit"  (click)="edit()">

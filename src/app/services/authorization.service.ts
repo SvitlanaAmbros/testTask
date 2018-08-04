@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/user';
+import { User } from '../models/User';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { auth } from 'firebase';
 import { Router } from '@angular/router';
@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 
 export class AuthorizationService {
 
-	constructor(private afAuth: AngularFireAuth, private router:Router) { }
+	constructor(private afAuth: AngularFireAuth,
+	 				private router:Router) { 
+	}
 
 	login(user: User) {
 		this.afAuth.auth
@@ -44,15 +46,20 @@ export class AuthorizationService {
 		});
   	}
 
-  	change() {
-  		console.log(this.afAuth.auth.currentUser.uid);
-  		this.router.navigateByUrl('details');
+  	goToDetails(id:string) {
+  		// console.log(id)
+		this.router.navigate(['details',id]);
+  	}
 
+  	change() {
+  		this.afAuth.auth.onAuthStateChanged(user => {
+  			this.goToDetails(user.uid);
+  			// console.log(user.uid)
+  		});
   	}
 
   	logout(){
   		this.afAuth.auth.signOut();
   	}
 }
-// }
 
