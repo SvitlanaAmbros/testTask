@@ -34,12 +34,6 @@ export class RegisterComponent implements OnInit {
     this.router.navigateByUrl('');
   }
 
-  // validate(regex, value, errorMsg, errorMsgArray) {
-  //   if (regex.test(value)) {
-  //     errorMsgArray.push(errorMsg);
-  //   }
-  // }
-
   register() { 
     let nameRegex = /^.+$/;
     let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -47,13 +41,6 @@ export class RegisterComponent implements OnInit {
     let passwordRegex = /^.{6,}$/;
     let countryRegex = /^[a-zA-Z]+$/;
     
-    // let errorMsgArray = [];
-    // this.validate(nameRegex, this.user.firstName, "FirstName is incorrect!", errorMsgArray);
-    // validate(nameRegex, this.user.lastName, "LastName is incorrect!", errorMsgArray);
-    // validate x 20
-    // alert(errorMsgArray[0]);
-    
-
     if (nameRegex.test(this.user.firstName) &&
         nameRegex.test(this.user.lastName) && 
         emailRegex.test(this.user.email) &&
@@ -63,15 +50,11 @@ export class RegisterComponent implements OnInit {
         countryRegex.test(this.user.country) &&
         (this.user.password == this.user.confirmPassword)){
 
-      // this.itemService.addUser(this.user);
-      // alert(this.user);
-    
-      this.authorization.register(this.user.email, this.user.password);
-
+      this.authorization
+        .register(this.user.email, this.user.password)
+        .then((res) => this.itemService.addUserInfo(this.user));
     }else {
-      alert('Something is wrong!')
+      alert('Inputted details are wrong!')
     } 
-
-
   } 
 }

@@ -1,7 +1,7 @@
-<!-- <div class="row">
-	<div class="col-lg-12"> -->
+<div class="row">
+	<div class="col-lg-12">
 		<div class="user-info">
-			<h1 class="user-info__hello">Hello user !</h1>
+			<h1 class="user-info__hello">Hello user {{currentUser?.firstName}}  {{currentUser?.lastName}} !</h1>
 			<img src="../assets/images/user.png" alt="logo" class="user-info__img">
 			<div class="user-info__detail">
 				<div class="detail__block ">
@@ -24,7 +24,7 @@
 			<input type="submit" value="edit" class="user-info__button user-info__button-edit"  (click)="edit()">
 			<input type="submit" value="logout" class="user-info__button user-info__button-logout"  (click)="logout()">
 		</div>
-<!-- 	</div>
+	</div>
 </div>
- -->
+
 

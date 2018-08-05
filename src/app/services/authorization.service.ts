@@ -10,17 +10,15 @@ import { Router } from '@angular/router';
 
 export class AuthorizationService {
 	id:string;
-	unsubscribe;
 
 	constructor(private afAuth: AngularFireAuth,
 	 				private router:Router) { 
-		// console.log("New auth")
 	}
 
 	login(email, password) {
 		this.afAuth.auth
 			.signInWithEmailAndPassword(email, password)
-			.then((res) =>this.change())
+			.then(authResult =>this.authOnSuccess(authResult))
         	.catch(function(error) {
 			var errorCode = error.code;
 			var errorMessage = error.message;
@@ -34,9 +32,9 @@ export class AuthorizationService {
   	}
 
   	register(email, password) { 
-  		this.afAuth.auth
+  		return this.afAuth.auth
   			.createUserWithEmailAndPassword(email, password)
-  			.then((res) => this.change())
+  			.then(authResult => this.authOnSuccess(authResult))
 	    	.catch(function(error) {
 	  		var errorCode = error.code;
 	  		var errorMessage = error.message;
@@ -50,17 +48,15 @@ export class AuthorizationService {
   	}
   	
   	getUserID() {
-  		// console.log(this.id)
 		return this.id;
   	}
 
-  	change() {
-  		this.unsubscribe = this.afAuth.auth.onAuthStateChanged((user) => this.id = user.uid);
+  	authOnSuccess(authResult) {
+  		this.id = authResult.user.uid;
   		this.router.navigateByUrl('details');
   	}
 
   	logout(){
-  		this.unsubscribe();
   		this.afAuth.auth.signOut();
   	}
 }

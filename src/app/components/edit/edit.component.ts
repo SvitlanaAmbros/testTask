@@ -31,7 +31,6 @@ export class EditComponent implements OnInit {
   }
 
   save() {
-    console.log(this.currentUser);
     this.itemService.updateUserInfo(this.currentUser);
     this.router.navigateByUrl('details');
   }
