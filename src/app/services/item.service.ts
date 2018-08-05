@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { User } from '../models/User';
 import { UserDB } from '../models/UserDB';
 import { AuthorizationService } from './authorization.service';
@@ -23,7 +21,7 @@ export class ItemService {
 	}
 
   updateUserInfo(user:UserDB){
-    this.afs.doc('detail/'+ this.authorization.getUserID()).update(user);
+    this.afs.doc('detail/' + this.authorization.getUserID()).update(user);
   }
 
   addUserInfo(user:User) {
