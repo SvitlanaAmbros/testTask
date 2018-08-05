@@ -16,13 +16,7 @@ const routes: Routes = [
 	},
 	{
 		path:'details',
-		component: DetailsComponent,
-		 // children:[
-   //         {
-   //          path : 'edit',
-   //          component: EditComponent
-   //         }
-   //         ]
+		component: DetailsComponent
 	},
 	{
 		path:'edit',

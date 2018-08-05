@@ -13,17 +13,14 @@ import { UserDB } from '../../models/UserDB';
 })
 
 export class DetailsComponent implements OnInit {
-  items:UserDB[];
   currentUser:UserDB;
-  id:string;
 
   constructor(private afs: AngularFirestore,private router:Router,
               private authorization: AuthorizationService,
               private itemService: ItemService,
               private route: ActivatedRoute) { 
-    this.itemService.getItems().subscribe(items => {
-      this.items = items;
-      this.currentUser = this.itemService.getCurrentUser(this.items);
+    this.itemService.getCurrentUser().then(currentUser => {
+      this.currentUser = currentUser.data() as UserDB;
     });
 
   }
