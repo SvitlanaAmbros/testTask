@@ -3,6 +3,9 @@ import { AuthorizationService } from '../../services/authorization.service';
 import { ItemService } from '../../services/item.service';  
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { UserDB } from '../../models/UserDB';
 // import 'rxjs/add/operator/toPromise';
 
@@ -13,47 +16,42 @@ import { UserDB } from '../../models/UserDB';
 })
 
 export class DetailsComponent implements OnInit {
+  itemsCollection: AngularFirestoreCollection<UserDB>;
   items:UserDB[];
   currentUser:UserDB;
   id:string;
 
-  constructor(private router:Router,
+  constructor(private afs: AngularFirestore,private router:Router,
               private authorization: AuthorizationService,
               private itemService: ItemService,
               private route: ActivatedRoute) { 
+    
+// this.itemsCollection = this.afs.collection('detail');
 
-  }
+//       this.itemsCollection
+//       .snapshotChanges()
+//       .pipe(
+//         map(actions => actions.map(a => {
+//           const data = a.payload.doc.data() as UserDB;
+//             data.id = a.payload.doc.id;
+//             // console.log(data);
+//             return data;
+//         }))
+//       ).subscribe(items => {
+//       console.log("loading");
+//       this.items = items;
+//       this.currentUser = this.items[0];
+//       console.log("qwe" + items)});
 
-  ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
 
     this.itemService.getItems().subscribe(items => {
       this.items = items;
-      // console.log(this.id)
-      this.currentUser = this.getCurrentUser(this.id);
+      this.currentUser = this.itemService.getCurrentUser(this.items);
     });
-
-    // this.id = this.route.snapshot.paramMap.get('id');
-    // this.getCurrentUser();
   }
 
-  getCurrentUser(id:string) {
-    // for(let user  in this.items) {
-    //   if(user.id == id) {
-    //     return user;
-    //   }
-    // }
+  ngOnInit() {
 
-    // for (let i = 0; i < this.items.length; i++){
-    //   alert(this.items[i].id)
-    //   alert(id)
-    //   // alert(this.items[i].id == id)
-    //   if(this.items[i].id == id) {
-    //     return this.items[i];
-    //   }
-    // }
-    // console.log(this.items.find(item => item.id == this.id))
-    return this.items.find(item => item.id == id);
   }
 
   edit() {

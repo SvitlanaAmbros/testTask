@@ -15,8 +15,14 @@ const routes: Routes = [
 		component: RegisterComponent
 	},
 	{
-		path:'details/:id',
-		component: DetailsComponent
+		path:'details',
+		component: DetailsComponent,
+		 // children:[
+   //         {
+   //          path : 'edit',
+   //          component: EditComponent
+   //         }
+   //         ]
 	},
 	{
 		path:'edit',
@@ -25,7 +31,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

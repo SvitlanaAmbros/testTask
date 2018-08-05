@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 
 export class AuthorizationService {
+	id:string;
+	unsubscribe;
 
 	constructor(private afAuth: AngularFireAuth,
 	 				private router:Router) { 
@@ -45,21 +47,19 @@ export class AuthorizationService {
 	  		console.log(error);
 		});
   	}
-
-  	goToDetails(id:string) {
-  		// console.log(id)
-		this.router.navigate(['details',id]);
+  	
+  	getUserID() {
+		return this.id;
   	}
 
   	change() {
-  		this.afAuth.auth.onAuthStateChanged(user => {
-  			this.goToDetails(user.uid);
-  			// console.log(user.uid)
-  		});
+  		this.unsubscribe = this.afAuth.auth.onAuthStateChanged((user) => this.id = user.uid);
+  		this.router.navigateByUrl('details');
   	}
 
   	logout(){
-  		this.afAuth.auth.signOut();
+  		// this.unsubscribe();
+  		// this.afAuth.auth.signOut();
   	}
 }
 
