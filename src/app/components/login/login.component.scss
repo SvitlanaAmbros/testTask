@@ -36,3 +36,32 @@ input[type="text"], input[type="password"]{
 	border:2px solid $material-accent;
 }
 
+@media screen and (max-width: 1200px) {
+	.card {
+		width: 70%;
+	}
+}
+
+@media screen and (max-width: 992px) {
+    .card {
+	/*padding: 60px 80px 50px;*/
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+    	width: 90%;
+		padding: 20px 50px 20px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+    .card {
+    	width: 100%;
+		padding: 20px 50px 20px;
+	}
+}
+
+
+	

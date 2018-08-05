@@ -49,3 +49,29 @@ input[type='text'] {
 	background: $white-color;
 	border:2px solid $material-accent;
 }
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+	.user-info__button {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.user-info {
+		margin: 10px;
+		padding: 5px 50px;
+	}
+	.user-info__button {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.user-info {
+		margin: 5px;
+		padding: 5px 30px;
+	}
+}
