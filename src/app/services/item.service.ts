@@ -10,50 +10,48 @@ import { AuthorizationService } from './authorization.service';
 })
 export class ItemService {
 	itemsCollection: AngularFirestoreCollection<UserDB>;
-  	items:Observable<UserDB[]>;
-  	currentUser:UserDB;
+  itemDoc: AngularFirestoreDocument<UserDB>;
+  items:Observable<UserDB[]>;
+  currentUser:UserDB;
 
 	constructor(private afs: AngularFirestore, 
 				private authorization: AuthorizationService) { 
   	
 	}
 
-  	// getItems() {
-  	// 	return this.items;
-  	// }
+	getCurrentUser(items) {
+  	return items.find(item => item.id == this.authorization.getUserID());
+	}
 
-  	// subscribeOnItems() {
-  	// 	this.items.subscribe(items => {
-   //    		this.items = items;
-   //    		// this.currentUser = this.getCurrentUser(this.id);
-   //  	});
-  	// }
+	getItems() {
+    this.itemsCollection = this.afs.collection('detail');
 
-  	getCurrentUser(items) {
-  		// console.log(this.authorization.getUserID());
-    	return items.find(item => item.id == this.authorization.getUserID());
-  	}
+    this.items = this.itemsCollection
+    .snapshotChanges()
+    .pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as UserDB;
+          data.id = a.payload.doc.id;
+          // console.log(data);
+          return data;
+      }))
+    );
+		return this.items;
+	}
 
-  	getItems() {
-      this.itemsCollection = this.afs.collection('detail');
+  // addUser(user: User) {
+    // user.id = this.authorization.getUserID();
+    // console.log(user.id);
+    // this.itemsCollection.add(user);
+  // }
 
-      this.items = this.itemsCollection
-      .snapshotChanges()
-      .pipe(
-        map(actions => actions.map(a => {
-          const data = a.payload.doc.data() as UserDB;
-            data.id = a.payload.doc.id;
-            // console.log(data);
-            return data;
-        }))
-      );
-  		return this.items;
-  	}
+  updateUserInfo(user:UserDB){
+    // this.itemsCollection = this.afs.collection('detail');
+    // console.log(user.id);
+    // this.itemsCollection.add(user);
+        console.log(user.id);
+    this.itemDoc = this.afs.doc('detail/'+user.id);
 
-  	// getCurrentUser() {
-  	// 	while(this.flag) {
-  	// 	console.log("waiting")
-  	// }
-  	// return this.currentUser;
-  	// }
+    this.itemDoc.update(user);
+  }
 }

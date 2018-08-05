@@ -14,11 +14,12 @@ export class AuthorizationService {
 
 	constructor(private afAuth: AngularFireAuth,
 	 				private router:Router) { 
+		// console.log("New auth")
 	}
 
-	login(user: User) {
+	login(email, password) {
 		this.afAuth.auth
-			.signInWithEmailAndPassword(user.email, user.password)
+			.signInWithEmailAndPassword(email, password)
 			.then((res) =>this.change())
         	.catch(function(error) {
 			var errorCode = error.code;
@@ -32,9 +33,9 @@ export class AuthorizationService {
     		});
   	}
 
-  	register(user: User) { 
+  	register(email, password) { 
   		this.afAuth.auth
-  			.createUserWithEmailAndPassword(user.email, user.password)
+  			.createUserWithEmailAndPassword(email, password)
   			.then((res) => this.change())
 	    	.catch(function(error) {
 	  		var errorCode = error.code;
@@ -49,6 +50,7 @@ export class AuthorizationService {
   	}
   	
   	getUserID() {
+  		// console.log(this.id)
 		return this.id;
   	}
 
@@ -58,8 +60,8 @@ export class AuthorizationService {
   	}
 
   	logout(){
-  		// this.unsubscribe();
-  		// this.afAuth.auth.signOut();
+  		this.unsubscribe();
+  		this.afAuth.auth.signOut();
   	}
 }
 

@@ -12,15 +12,20 @@ $material-dark:  #2c3849;
 	border: 5px solid $material-accent;
 	border-radius: 7px;
 	text-align: center;
-	padding: 50px 100px;
+	padding: 20px 100px;
 }
 
-input[type='text'],.block__item {
-	font-size: 20px;
+.user-info__editing {
+	margin-bottom: 40px;
+}
+
+input[type='text'] {
+	font-size: 26px;
+	color:$material-dark;
 }
 
 .block__item {
-	font-size: 16px;
+	font-size: 20px;
 }
 
 .user-info__button {

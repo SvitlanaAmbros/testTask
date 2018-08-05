@@ -8,6 +8,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { AuthorizationService } from './services/authorization.service'; 
+import { ItemService } from './services/item.service'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -44,7 +45,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFirestoreModule
   ],
-  providers: [AuthorizationService],
+  providers: [AuthorizationService,ItemService],
   bootstrap: [AppComponent]
 })
 

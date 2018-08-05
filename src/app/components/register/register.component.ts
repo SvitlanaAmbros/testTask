@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { User } from '../../models/User';
-import { AuthorizationService } from '../../services/authorization.service'; 
+import { AuthorizationService } from '../../services/authorization.service';
+import { ItemService } from '../../services/item.service';  
 
 @Component({
   selector: 'app-register',
@@ -21,14 +22,16 @@ export class RegisterComponent implements OnInit {
     country:''
   };
 
-  constructor(private router:Router, private authorization: AuthorizationService) { }
+  constructor(private router:Router, 
+            private authorization: AuthorizationService,
+            private itemService: ItemService) { 
+  }
 
   ngOnInit() {
   }
 
   goBack() {
     this.router.navigateByUrl('');
-	// this.location.back();
   }
 
   // validate(regex, value, errorMsg, errorMsgArray) {
@@ -52,16 +55,23 @@ export class RegisterComponent implements OnInit {
     
 
     if (nameRegex.test(this.user.firstName) &&
-      nameRegex.test(this.user.lastName) && 
-      emailRegex.test(this.user.email) &&
-      passwordRegex.test(this.user.password) &&
-      passwordRegex.test(this.user.confirmPassword) &&
-      ageRegex.test(String(this.user.age)) && 
-      countryRegex.test(this.user.country) &&
-      (this.user.password == this.user.confirmPassword)){
-      this.authorization.register(this.user)
+        nameRegex.test(this.user.lastName) && 
+        emailRegex.test(this.user.email) &&
+        passwordRegex.test(this.user.password) &&
+        passwordRegex.test(this.user.confirmPassword) &&
+        ageRegex.test(String(this.user.age)) && 
+        countryRegex.test(this.user.country) &&
+        (this.user.password == this.user.confirmPassword)){
+
+      // this.itemService.addUser(this.user);
+      // alert(this.user);
+    
+      this.authorization.register(this.user.email, this.user.password);
+
     }else {
       alert('Something is wrong!')
     } 
+
+
   } 
 }

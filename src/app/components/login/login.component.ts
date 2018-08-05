@@ -27,11 +27,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     if(this.user.email != "" && this.user.password != "") {
-      this.authorization.login(this.user);
+      this.authorization.login(this.user.email, this.user.password);
     }
-  }
-
-  
-
-    
+  }    
 }

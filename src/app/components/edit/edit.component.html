@@ -1,23 +1,23 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="user-info">
-			<h1 class="user-info__edit">Edit information</h1>
+			<h1 class="user-info__editing">Edit information</h1>
 			<div class="user-info__edit">
 				<div class="edit__block ">
 					<label class = "block__item">First Name:</label>
-					<input type="text" class = "block__item_edit" value="Name">
+					<input type="text" class = "block__item_edit" [(ngModel)]="currentUser.firstName" name="firstName">
 				</div>
 				<div class="detail__block">
 					<label class = "block__item">Last Name:</label>
-					<input type="text" class = "block__item_edit" value="LastName">
+					<input type="text" class = "block__item_edit"  [(ngModel)]="currentUser.lastName" name="lastName" >
 				</div>
 				<div class="detail__block">
 					<label class = "block__item">Age:</label>
-					<input type="text" class = "block__item_edit" value="Age">
+					<input type="text" class = "block__item_edit" [(ngModel)]="currentUser.age" name="age">
 				</div>
 				<div class="detail__block">
 					<label class = "block__item">Country:</label>
-					<input type="text" class = "block__item_edit" value="Country">
+					<input type="text" class = "block__item_edit" [(ngModel)]="currentUser.country" name="country">
 				</div>
 			</div>
 			<input type="submit" value="save" class="user-info__button user-info__button-edit"  (click)="save()">
